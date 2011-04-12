@@ -51,6 +51,8 @@ Achievable also provides resque functionality. Enable or disable resque in `conf
       ...
     end
 
+### Note that achievement items have to be created FIRST!
+
 ## TODO
 
     
