@@ -5,14 +5,18 @@ class AchievableGenerator < Rails::Generators::NamedBase
   class_option :migration, :type => :boolean, :default => true
   
   def manifest 
-    record do |m| 
-      m.migration_template 'migration.rb', 'db/migrate', :migration_file_name => "achievable_migration"
-    end
+    migration_template 'migration.rb', 'db/migrate', :migration_file_name => "achievable_migration"
   end
   
   def copy_achievable_models
     template "achievement.rb", "app/models/achievement.rb"
     template "achieving.rb", "app/models/achieving.rb"
+  end
+  
+  def set_up_achiever  
+    inject_into_class "app/models/#{file_name}.rb", class_name, <<-CONTENT
+  include Achievable::Achiever
+  CONTENT
   end
   
   def add_application_config
