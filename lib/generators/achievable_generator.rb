@@ -1,17 +1,7 @@
 class AchievableGenerator < Rails::Generators::NamedBase
+  include Rails::Generators::Migration  
   
   source_root File.expand_path("../templates", __FILE__)
-  
-  class_option :migration, :type => :boolean, :default => true
-  
-  def manifest 
-    migration_template 'migration.rb', 'db/migrate', :migration_file_name => "achievable_migration"
-  end
-  
-  def copy_achievable_models
-    template "achievement.rb", "app/models/achievement.rb"
-    template "achieving.rb", "app/models/achieving.rb"
-  end
   
   def set_up_achiever  
     inject_into_class "app/models/#{file_name}.rb", class_name, <<-CONTENT
@@ -25,6 +15,19 @@ class AchievableGenerator < Rails::Generators::NamedBase
     config.achievable.resque_enable = false
 
 CONTENT
+  end
+  
+  def manifest 
+    migration_template 'migration.rb', 'db/migrate/achievable_migration'
+  end
+  
+  def copy_achievable_models
+    template "achievement.rb", "app/models/achievement.rb"
+    template "achieving.rb", "app/models/achieving.rb"
+  end
+
+  def self.next_migration_number(path)
+    Time.now.utc.strftime("%Y%m%d%H%M%S")
   end
 
 end

@@ -11,9 +11,12 @@ To install Achievable, simply install the gem:
     
 Run generator to generate config information in `application.rb`, migration file `achievable_migration`, and model files `achievement.rb` and `achieving.rb`
 
-    rails g achievable
+    rails g achievable MODEL
     
-## Configuration for [resque](https://github.com/defunkt/resque)
+MODEL here is the achiever - model that receives achievement, for example: user
+    
+## Configuration for Resque
+[resque](https://github.com/defunkt/resque)
 
 Achievable also provides resque functionality. Enable or disable resque in `config/application.rb`:
 
