@@ -1,6 +1,6 @@
 # Achievable
 
-This is a simple achievement builder for rails
+This provides achievement features for rails app.
 
 
 ## Installation
