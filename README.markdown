@@ -13,10 +13,10 @@ Run generator to generate config information in `application.rb`, migration file
 
     rails g achievable MODEL
     
-MODEL here is the achiever - model that receives achievement, for example: user
+MODEL here is the achiever, model that receives achievement, for example: user. It will insert `include Achievable::Achiever` to User class.
     
 ## Configuration for Resque
-[resque](https://github.com/defunkt/resque)
+Check out [resque](https://github.com/defunkt/resque)
 
 Achievable also provides resque functionality. Enable or disable resque in `config/application.rb`:
 
