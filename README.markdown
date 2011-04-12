@@ -18,7 +18,7 @@ MODEL here is the achiever, model that receives achievement, for example: user. 
 ## Configuration for Resque
 Check out [resque](https://github.com/defunkt/resque)
 
-Achievable also provides resque functionality. Enable or disable resque in `config/application.rb`:
+Achievable also provides resque functionality. The queue name is `:achievable`. Enable or disable resque in `config/application.rb`:
 
     config.achievable.resque_enable = false
 
