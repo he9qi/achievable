@@ -47,7 +47,7 @@ Achievable also provides resque functionality. The queue name is `:achievable`. 
     
     class User < ActiveRecord::Base
       ... 
-      achievable :tags_count, "tags_500_times" :condition => lambda { |u| u.tags_count >= 500 }
+      achievable :tags_count, "tags_500_times", :condition => lambda { |u| u.tags_count >= 500 }
       ...
     end
 
