@@ -50,9 +50,13 @@ Achievable also provides resque functionality. The queue name is `:achievable`. 
       achievable :tags_count, "tags_500_times", :condition => lambda { |u| u.tags_count >= 500 }
       ...
     end
+    
+### Or we can call achieve manually by:
+    
+    user.achieve( name_of_achievement, :condition => lambda { ... } )
+    
 
 ### Note that achievement items have to be created FIRST!
 
 ## TODO
-
     
