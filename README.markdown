@@ -9,7 +9,7 @@ To install Achievable, simply install the gem:
 
     gem install achievable
     
-Run generator to generate config information in `application.rb`, migration file `achievable_migration`, and model files `achievement.rb` and `achieving.rb`
+Run generator to generate config information in `application.rb`, migration file `achievable_migration`, and model file `achievement.rb`
 
     rails g achievable MODEL
     

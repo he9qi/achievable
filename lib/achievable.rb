@@ -1,3 +1,10 @@
+require "mongoid"
+
+# We are required to choose a database name
+Mongoid.configure do |config|
+  config.master = Mongo::Connection.new.db("streamit_#{Rails.env}")
+end
+
 module Achievable
   autoload :DSL,            'achievable/dsl'
   autoload :Achiever,       'achievable/achiever'

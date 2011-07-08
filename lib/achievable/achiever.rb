@@ -4,8 +4,7 @@ module Achievable
     include Achievable::AchieveManager
 
     included do
-      has_many :achievements, :through => :achievings
-      has_many :achievings, :dependent => :destroy, :as => :achiever
+      has_and_belongs_to_many :achievements
     end
          
     def achieve(name, options = {})
@@ -18,15 +17,15 @@ module Achievable
     end
     
     def achieveit!(name, &block)
-      achievement = Achievement.find_by_name!(name)
-      unless achieved?(achievement)
+      achievement = Achievement.where(:name => name).first
+      unless achievement && achieved?(achievement)
         achievement.achieve(self) if ( block_given? ? block.call(self) : true )
       end
     end
     
     def achieved?(achievement)
       if achievement.is_a? String
-        achievement = Achievement.find_by_name!(achievement)
+        achievement = Achievement.where(:name => achievement).first
       end
       achievements.include?(achievement)
     end

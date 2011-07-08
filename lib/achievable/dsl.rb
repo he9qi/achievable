@@ -15,7 +15,7 @@ module Achievable
           receiver.achieve(achievement, options)
         end
       
-        send(:"after_update", method_name)
+        send(:"before_update", method_name)
       end
     end
     

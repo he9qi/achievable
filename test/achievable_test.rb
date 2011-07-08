@@ -15,7 +15,6 @@ describe "Achievable" do
   
   after do
     Achievement.destroy_all
-    Achieving.destroy_all
     User.destroy_all
     Post.destroy_all
   end
@@ -95,6 +94,7 @@ describe "Achievable" do
         @post1.name = "post2"
         @post1.save!
       end
+      @user1.reload
       @user1.achieved?("achievement2").should be_true
     end
     

@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   
   s.add_dependency  'sourcify'
   s.add_dependency  'resque'
+  s.add_dependency("bson_ext", "~> 1.3.1")
+  s.add_dependency("mongoid", '~> 2.0.0')
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
