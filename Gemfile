@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "rails", "3.0.5"
+gem "rails", "3.1.0"
 gem "capybara", ">= 0.4.0"
 gem "sqlite3"
 gem "rspec", '2.2.0'
