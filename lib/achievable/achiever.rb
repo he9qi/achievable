@@ -2,12 +2,13 @@ module Achievable
   module Achiever
     extend ActiveSupport::Concern
     include Achievable::AchieveManager
-
-    included do
-      has_and_belongs_to_many :achievements
-    end
+         
+     included do
+       field :achievements, :type => Array, :default => []
+     end
          
     def achieve(name, options = {})
+      return unless Achievement.has_achievement?(name)
       condition = options[:condition] ? options[:condition] : ( lambda { |u| true } )
       if Achievable.resque_enable
         achieveit(name, &condition)
@@ -17,16 +18,12 @@ module Achievable
     end
     
     def achieveit!(name, &block)
-      achievement = Achievement.where(:name => name).first
-      unless achievement && achieved?(achievement)
-        achievement.achieve(self) if ( block_given? ? block.call(self) : true )
+      if !achieved?(name) && ( block_given? ? block.call(self) : true )
+        update_attribute :achievements, (achievements << name)
       end
     end
     
     def achieved?(achievement)
-      if achievement.is_a? String
-        achievement = Achievement.where(:name => achievement).first
-      end
       achievements.include?(achievement)
     end
     
