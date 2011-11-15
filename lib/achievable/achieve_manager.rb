@@ -11,7 +11,7 @@ module Achievable
     
     def achieveit(name, &block)
       block_source = block_given? ? block.to_source : nil
-      Resque.enqueue(AchieveManager, {"name" => name, "id" => self.id, "class" => self.class.to_s, "condition" => block_source})
+      Resque.enqueue(AchieveManager, {"name" => name, "id" => self._id, "class" => self.class.to_s, "condition" => block_source})
     end  
       
     def self.perform(opts={})
